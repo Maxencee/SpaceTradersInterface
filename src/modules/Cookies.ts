@@ -1,28 +1,37 @@
 export interface Cookie {
     name: string,
-    value: Object,
-    expires: Date,
+    value: Object|string,
+    expires: number,
     path: string
 }
 
 export function createCookie (data: Cookie) {
     const d = new Date();
-    d.setTime(data.expires.getTime());
+    d.setTime(d.getTime() + data.expires);
     let expires = "expires="+ d.toUTCString();
     document.cookie = data.name + "=" + JSON.stringify(data.value) + ";" + expires + ";path=/";
 };
 
-export function getCookie (name: string) : Object|false {
+export function deleteCookie(name: string) {
+  createCookie({
+    name: name, 
+    value: "",
+    expires: -3600 * 24,
+    path: "/"
+  })
+}
+
+export function getCookie (name: string) : any|false {
     let cname = name + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
     for(let i = 0; i <ca.length; i++) {
       let c = ca[i];
-      while (c.charAt(0) == ' ') {
+      while (c.charAt(0) === ' ') {
         c = c.substring(1);
       }
-      if (c.indexOf(name) == 0) {
-        return JSON.parse(c.substring(cname.length, c.length));
+      if (c.indexOf(cname) === 0) {
+        return c.substring(cname.length, c.length);
       }
     }
     return false;
