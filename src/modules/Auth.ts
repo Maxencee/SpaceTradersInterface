@@ -6,7 +6,8 @@ export interface Agent {
     headquarters: string,
     credits: number,
     startingFaction: string,
-    shipCount: number 
+    shipCount: number,
+    token: string
 }
 
 export async function login (token: string): Promise<Agent|false> {
@@ -24,18 +25,19 @@ export async function login (token: string): Promise<Agent|false> {
         localStorage.removeItem('usertoken');
         return false;
       } else {
+        localStorage.setItem('usertoken', token);
         return response.data;
       }
 }
 
-export async function register (token: string): Promise<Agent|false> {
+export async function register (symbol: string): Promise<Agent|false> {
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        symbol: token,
+        symbol: symbol,
         faction: "COSMIC",
       }),
     };
@@ -46,6 +48,6 @@ export async function register (token: string): Promise<Agent|false> {
         return false;
     } else {
       localStorage.setItem('usertoken', response.data.token);
-        return response.data;
+      return response.data;
     }
 }
