@@ -23,7 +23,7 @@ export class NavModeCommand extends BaseCommand {
 
         if(!this.system.ship.get.symbol) {
             return {
-                content: "You need to use a ship to use this command | See useship",
+                content: "You need to use a ship to use this command | See ship command",
                 command: this
             }
         }

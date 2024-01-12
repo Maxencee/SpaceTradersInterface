@@ -37,10 +37,11 @@ export class RefuelCommand extends BaseCommand {
 
         if(response.error) {
             return {
-                content: response.error.message,
+                content: <ReturnContent content={response.error.message} type={"error"}/>,
                 command: this
             }
         }
+
 
         return {
             content: `Ship ${this.system.ship.get.symbol} refueled by ${this.units} units.`,
