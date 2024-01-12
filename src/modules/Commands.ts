@@ -17,6 +17,7 @@ import { ExtractCommand } from "../commands/ExtractCommand.tsx";
 import { NavModeCommand } from "../commands/NavModeCommand.ts";
 import { SellCommand } from "../commands/SellCommand.tsx";
 import { CargoCommand } from "../commands/CargoCommand.tsx";
+import { RefuelCommand } from "../commands/RefuelCommand.tsx";
 
 export interface CommandPrompt {
     name: string,
@@ -53,4 +54,5 @@ const Commands = {
     navmode: (command: CommandPrompt, system) => new NavModeCommand(command, system),
     sell: (command: CommandPrompt, system) => new SellCommand(command, system),
     cargo: (command: CommandPrompt, system) => new CargoCommand(command, system),
+    refuel: (command: CommandPrompt, system) => new RefuelCommand(command, system),
 }
