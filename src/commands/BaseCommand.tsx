@@ -1,5 +1,4 @@
 import ReturnContent from "../components/contents/ReturnContent.tsx";
-import * as Auth from "../modules/Auth.ts";
 import { CommandPrompt, CommandResponse } from "../modules/Commands.ts";
 import React from "react";
 

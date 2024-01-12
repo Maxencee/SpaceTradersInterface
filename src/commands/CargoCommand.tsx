@@ -35,7 +35,7 @@ export class CargoCommand extends BaseCommand {
             }
         }
 
-        if(response.data.inventory.length == 0) {
+        if(response.data.inventory.length === 0) {
             return {
                 content: "Empty cargo.",
                 command: this
